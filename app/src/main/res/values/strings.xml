@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BookLibrary</string>
+    <string name="add_btn">add btn</string>
+    <string name="book_title">Title of the book</string>
+    <string name="book_author">Author of the book</string>
+    <string name="book_numPages">Number of pages</string>
+    <string name="add_book">Add book</string>
+    <string name="update_book">Save changes</string>
+</resources>

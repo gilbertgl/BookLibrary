@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "963575820646",
+    "project_id": "book-library-e98f4",
+    "storage_bucket": "book-library-e98f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:963575820646:android:1b669508b8dea1ca1218a7",
+        "android_client_info": {
+          "package_name": "com.gilberto.booklibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963575820646-nui5qlm33sekgjgask8jl2cptbforkr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsQfqll-chFMluZqBErQ_ti9AY-UZkb1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963575820646-nui5qlm33sekgjgask8jl2cptbforkr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
