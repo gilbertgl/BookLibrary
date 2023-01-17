@@ -40,10 +40,10 @@ public class AddBookScreen extends AppCompatActivity {
             if (title.isEmpty() || author.isEmpty() || pages == 0) {
                 Toast.makeText(this, "Fill in all fields!", Toast.LENGTH_SHORT).show();
 
-            } else if (!title.matches("^([a-zA-Z0-9\\s]+){3,}")) {
+            } else if (!title.matches("^([a-zA-Z0-9\\s.]+){3,}")) {
                 Toast.makeText(this, "The title: %s isn't valid! It has to have at least 3 letters.", Toast.LENGTH_SHORT).show();
 
-            } else if (!author.matches("^([a-zA-Z0-9\\s]+){3,}")) {
+            } else if (!author.matches("^([a-zA-Z0-9\\s.]+){3,}")) {
                 Toast.makeText(this, "The author: %s isn't valid! It has to have at least 3 letters.", Toast.LENGTH_SHORT).show();
 
             } else {
