@@ -11,14 +11,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class UpdateBookScreen extends AppCompatActivity {
 
     private EditText title_update_input, author_update_input, pages_update_input;
-    private Button btn_updateBook;
+    private Button btn_updateBook, btn_deleteBook;
     private ProgressBar progress_bar_updateScreen;
-    String id;
+    String id, title, author, pages;
     private View screen;
 
     @Override
@@ -28,20 +30,26 @@ public class UpdateBookScreen extends AppCompatActivity {
         ComponentsInitializer();
         GetAndSetIntentData();
 
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(title_update_input.getText().toString());
+
         btn_updateBook.setOnClickListener(v -> {
             hideKeyBoard(v);
             progress_bar_updateScreen.setVisibility(View.VISIBLE);
             new Handler().postDelayed(() -> {
                 Repository repo = new Repository(this);
-                repo.updateData(id, title_update_input.getText().toString(),
-                        author_update_input.getText().toString(), Integer.parseInt(pages_update_input.getText().toString()));
+                title = title_update_input.getText().toString().trim();
+                author = author_update_input.getText().toString().trim();
+                pages = pages_update_input.getText().toString().trim();
+                repo.updateData(id, title, author, Integer.parseInt(pages));
             }, 1500);
-            new Handler().postDelayed(() -> {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }, 3000);
+            new Handler().postDelayed(this::finish, 3000);
+        });
+
+        btn_deleteBook.setOnClickListener(v -> {
+            hideKeyBoard(v);
+            ConfirmDialog();
         });
 
         screen.setOnFocusChangeListener((v, hasFocus) -> {
@@ -56,6 +64,7 @@ public class UpdateBookScreen extends AppCompatActivity {
         author_update_input = findViewById(R.id.author_update_input);
         pages_update_input = findViewById(R.id.pages_update_input);
         btn_updateBook = findViewById(R.id.btn_updateBook);
+        btn_deleteBook = findViewById(R.id.btn_deleteBook);
         progress_bar_updateScreen = findViewById(R.id.progress_bar_updateScreen);
         screen = findViewById(R.id.update_book_screen);
     }
@@ -64,9 +73,13 @@ public class UpdateBookScreen extends AppCompatActivity {
         if (getIntent().hasExtra("id") && getIntent().hasExtra("title") &&
                 getIntent().hasExtra("author") && getIntent().hasExtra("pages")) {
             id = getIntent().getStringExtra("id");
-            title_update_input.setText(getIntent().getStringExtra("title"));
-            author_update_input.setText(getIntent().getStringExtra("author"));
-            pages_update_input.setText(getIntent().getStringExtra("pages"));
+            title = getIntent().getStringExtra("title");
+            author = getIntent().getStringExtra("author");
+            pages = getIntent().getStringExtra("pages");
+
+            title_update_input.setText(title);
+            author_update_input.setText(author);
+            pages_update_input.setText(pages);
         } else {
             Toast.makeText(this, "No Data.", Toast.LENGTH_SHORT).show();
         }
@@ -75,5 +88,22 @@ public class UpdateBookScreen extends AppCompatActivity {
     private void hideKeyBoard(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private void ConfirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + title + "?");
+        builder.setMessage("You are about to delete " + title + ". Are you sure?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            progress_bar_updateScreen.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(() -> {
+                Repository repo = new Repository(UpdateBookScreen.this);
+                repo.deleteOneRow(id);
+            }, 1500);
+            new Handler().postDelayed(this::finish, 3000);
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+        });
+        builder.create().show();
     }
 }

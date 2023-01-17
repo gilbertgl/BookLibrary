@@ -6,4 +6,5 @@
     <string name="book_numPages">Number of pages</string>
     <string name="add_book">Add book</string>
     <string name="update_book">Save changes</string>
+    <string name="delete_book">Delete book</string>
 </resources>

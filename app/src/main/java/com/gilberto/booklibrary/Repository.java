@@ -79,7 +79,7 @@ public class Repository extends SQLiteOpenHelper {
 
     void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        long result = db.delete(TABLE_NAME, "id=?", new String[]{row_id});
         if(result == -1){
             Toast.makeText(_context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         }else{

@@ -86,8 +86,7 @@ public class AddBookScreen extends AppCompatActivity {
     private void GoToMainActivity() {
         Intent intent = new Intent(AddBookScreen.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
+        startActivityForResult(intent, 1);
     }
 
     private void hideKeyBoard(View view) {

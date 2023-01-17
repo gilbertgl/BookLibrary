@@ -10,13 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BookLibrary"
+        android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
             android:name=".UpdateBookScreen"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Change book information">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

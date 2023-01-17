@@ -10,7 +10,8 @@
     tools:context=".AddBookScreen"
     android:focusable="true"
     android:clickable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    >
 
     <EditText
         android:id="@+id/title_input"
@@ -60,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/upgrade_button_shape"
         android:minWidth="150dp"
         android:text="@string/add_book"
         android:textAllCaps="false"
