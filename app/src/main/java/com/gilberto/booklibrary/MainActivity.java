@@ -1,6 +1,5 @@
 package com.gilberto.booklibrary;
 
-import android.app.StatusBarManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rView;
     private FloatingActionButton add_button;
     private CustomAdapter adapter;
+    private ImageView emptyScreen_imageView;
+    private TextView emptyScreen_textView;
 
     private Repository repo;
     private ArrayList<String> book_id, book_title, book_author, book_pages;
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.delete_all){
-            ConfirmDialog();
+            ConfirmDeleteAllDialog();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     private void ComponentsInitializer() {
         rView = findViewById(R.id.recycleView);
         add_button = findViewById(R.id.add_button);
+        emptyScreen_imageView = findViewById(R.id.emptyScreen_imageView);
+        emptyScreen_textView = findViewById(R.id.emptyScreen_textView);
     }
 
     private void ContextInitializer() {
@@ -98,10 +103,15 @@ public class MainActivity extends AppCompatActivity {
                 book_author.add(cursor.getString(2));
                 book_pages.add(cursor.getString(3));
             }
+            emptyScreen_imageView.setVisibility(View.GONE);
+            emptyScreen_textView.setVisibility(View.GONE);
+        } else {
+            emptyScreen_imageView.setVisibility(View.VISIBLE);
+            emptyScreen_textView.setVisibility(View.VISIBLE);
         }
     }
 
-    private void ConfirmDialog() {
+    private void ConfirmDeleteAllDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Deleting all Books");
         builder.setMessage("Are you sure?");

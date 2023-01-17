@@ -8,4 +8,6 @@
     <string name="update_book">Save changes</string>
     <string name="delete_book">Delete book</string>
     <string name="delete_all">Delete All</string>
+    <string name="no_books">No books added.</string>
+    <string name="progressbar">progressBar</string>
 </resources>

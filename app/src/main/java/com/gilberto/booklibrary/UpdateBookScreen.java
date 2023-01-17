@@ -49,7 +49,7 @@ public class UpdateBookScreen extends AppCompatActivity {
 
         btn_deleteBook.setOnClickListener(v -> {
             hideKeyBoard(v);
-            ConfirmDialog();
+            ConfirmDeleteDialog();
         });
 
         screen.setOnFocusChangeListener((v, hasFocus) -> {
@@ -90,7 +90,7 @@ public class UpdateBookScreen extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    private void ConfirmDialog() {
+    private void ConfirmDeleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete " + title + "?");
         builder.setMessage("You are about to delete " + title + ". Are you sure?");

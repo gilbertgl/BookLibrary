@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/background</item>
         <item name="colorPrimaryDark">@color/black</item>
+        <item name="android:itemBackground">@color/dark_grey</item>
+        <item name="android:actionMenuTextColor">@color/light_grey</item>
     </style>
     <style name="input">
         <item name="android:layout_width">match_parent</item>
